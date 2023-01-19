@@ -65,6 +65,8 @@
     [events]="events"
     [refresh]="refresh"
     [activeDayIsOpen]="activeDayIsOpen"
+    [activeDayBadge]="false"
+    [activeTitleText]="true"
     (dayClicked)="dayClicked($event.day)"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"

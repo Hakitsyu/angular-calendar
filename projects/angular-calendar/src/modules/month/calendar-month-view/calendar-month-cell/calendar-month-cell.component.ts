@@ -34,9 +34,11 @@ import { PlacementArray } from 'positioning';
         "
       >
         <span aria-hidden="true">
-          <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{
-            day.badgeTotal
-          }}</span>
+          <span
+            class="cal-day-badge"
+            *ngIf="activeDayBadge && day.badgeTotal > 0"
+            >{{ day.badgeTotal }}</span
+          >
           <span class="cal-day-number">{{
             day.date | calendarDate : 'monthViewDayNumber' : locale
           }}</span>
@@ -48,6 +50,7 @@ import { PlacementArray } from 'positioning';
           *ngFor="let event of day.events; trackBy: trackByEventId"
           [ngStyle]="{ backgroundColor: event.color?.primary }"
           [ngClass]="event?.cssClass"
+          [ngClass]="{ 'cal-event-title-text': activeTitleText }"
           (mouseenter)="highlightDay.emit({ event: event })"
           (mouseleave)="unhighlightDay.emit({ event: event })"
           [mwlCalendarTooltip]="
@@ -67,7 +70,9 @@ import { PlacementArray } from 'positioning';
           [touchStartLongPress]="{ delay: 300, delta: 30 }"
           (mwlClick)="eventClicked.emit({ event: event, sourceEvent: $event })"
           [attr.aria-hidden]="{} | calendarA11y : 'hideMonthCellEvents'"
-        ></div>
+        >
+          {{ activeTitleText ? event.title : null }}
+        </div>
       </div>
     </ng-template>
     <ng-template
@@ -119,6 +124,10 @@ export class CalendarMonthCellComponent {
   @Input() tooltipTemplate: TemplateRef<any>;
 
   @Input() tooltipDelay: number | null;
+
+  @Input() activeDayBadge: boolean = true;
+
+  @Input() activeTitleText: boolean = false;
 
   @Output() highlightDay: EventEmitter<any> = new EventEmitter();
 

@@ -83,6 +83,8 @@ export interface CalendarMonthViewEventTimesChangedEvent<
               [tooltipTemplate]="tooltipTemplate"
               [tooltipDelay]="tooltipDelay"
               [customTemplate]="cellTemplate"
+              [activeDayBadge]="activeDayBadge"
+              [activeTitleText]="activeTitleText"
               [ngStyle]="{ backgroundColor: day.backgroundColor }"
               (mwlClick)="dayClicked.emit({ day: day, sourceEvent: $event })"
               [clickListenerDisabled]="dayClicked.observers.length === 0"
@@ -243,6 +245,16 @@ export class CalendarMonthViewComponent
    * An array of day indexes (0 = sunday, 1 = monday etc) that indicate which days are weekends
    */
   @Input() weekendDays: number[];
+
+  /**
+   * Show day badge
+   */
+  @Input() activeDayBadge: boolean = true;
+
+  /**
+   * Show event title text
+   */
+  @Input() activeTitleText: boolean = false;
 
   /**
    * An output that will be called before the view is rendered for the current month.

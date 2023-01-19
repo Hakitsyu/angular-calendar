@@ -48,6 +48,14 @@ $cal-month-view-vars: map.merge($cal-vars, $cal-month-view-vars);
       color: map.get($theme, white);
     }
 
+    .cal-event.cal-event-title-text {
+      width: auto;
+      height: auto;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
     .cal-day-cell.cal-weekend .cal-day-number {
       color: map.get($theme, weekend-color);
     }
