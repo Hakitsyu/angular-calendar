@@ -29,11 +29,23 @@ import { PlacementArray } from 'positioning';
     >
       <div
         class="cal-event"
-        [ngStyle]="{
-          color: weekEvent.event.color?.secondaryText,
-          backgroundColor: weekEvent.event.color?.secondary,
-          borderColor: weekEvent.event.color?.primary
-        }"
+        [ngStyle]="
+          !fillEvent
+            ? {
+                color:
+                  weekEvent.event.color?.primaryText ||
+                  weekEvent.event.color?.secondaryText,
+                backgroundColor: weekEvent.event.color?.secondary,
+                borderColor: weekEvent.event.color?.primary
+              }
+            : {
+                color:
+                  weekEvent.event.color?.primaryText ||
+                  weekEvent.event.color?.secondaryText,
+                backgroundColor: weekEvent.event.color?.primary,
+                borderColor: weekEvent.event.color?.primary
+              }
+        "
         [mwlCalendarTooltip]="
           !tooltipDisabled
             ? (weekEvent.event.title
@@ -111,6 +123,8 @@ export class CalendarWeekViewEventComponent {
   @Input() column: WeekViewHourColumn;
 
   @Input() daysInWeek: number;
+
+  @Input() fillEvent: boolean = false;
 
   @Output() eventClicked = new EventEmitter<{
     sourceEvent: MouseEvent | KeyboardEvent;

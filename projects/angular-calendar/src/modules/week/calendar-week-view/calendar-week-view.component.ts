@@ -191,6 +191,7 @@ export interface CalendarWeekViewBeforeRenderEvent extends WeekView {
               [eventTitleTemplate]="eventTitleTemplate"
               [eventActionsTemplate]="eventActionsTemplate"
               [daysInWeek]="daysInWeek"
+              [fillEvent]="fillEvents"
               (eventClicked)="
                 eventClicked.emit({
                   event: allDayEvent.event,
@@ -349,6 +350,7 @@ export interface CalendarWeekViewBeforeRenderEvent extends WeekView {
                     [eventActionsTemplate]="eventActionsTemplate"
                     [column]="column"
                     [daysInWeek]="daysInWeek"
+                    [fillEvent]="fillEvents"
                     (eventClicked)="
                       eventClicked.emit({
                         event: timeEvent.event,
@@ -586,6 +588,11 @@ export class CalendarWeekViewComponent
    * A custom template to use for the current time marker
    */
   @Input() currentTimeMarkerTemplate: TemplateRef<any>;
+
+  /**
+   * Fill events background-color
+   */
+  @Input() fillEvents: boolean = false;
 
   /**
    * Allow you to customise where events can be dragged and resized to.

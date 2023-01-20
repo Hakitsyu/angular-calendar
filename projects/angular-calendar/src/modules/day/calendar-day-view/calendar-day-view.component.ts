@@ -57,6 +57,7 @@ export type CalendarDayViewBeforeRenderEvent =
       [allDayEventsLabelTemplate]="allDayEventsLabelTemplate"
       [currentTimeMarkerTemplate]="currentTimeMarkerTemplate"
       [validateEventTimesChanged]="validateEventTimesChanged"
+      [fillEvents]="fillEvents"
       (eventClicked)="eventClicked.emit($event)"
       (hourSegmentClicked)="hourSegmentClicked.emit($event)"
       (eventTimesChanged)="eventTimesChanged.emit($event)"
@@ -186,6 +187,11 @@ export class CalendarDayViewComponent {
    * A custom template to use for the current time marker
    */
   @Input() currentTimeMarkerTemplate: TemplateRef<any>;
+
+  /**
+   * Fill events background-color
+   */
+  @Input() fillEvents: boolean = false;
 
   /**
    * Allow you to customise where events can be dragged and resized to.

@@ -48,7 +48,10 @@ import { PlacementArray } from 'positioning';
         <div
           class="cal-event"
           *ngFor="let event of day.events; trackBy: trackByEventId"
-          [ngStyle]="{ backgroundColor: event.color?.primary }"
+          [ngStyle]="{
+            backgroundColor: event.color?.primary,
+            color: event.color?.primaryText || ''
+          }"
           [ngClass]="event?.cssClass"
           [ngClass]="{ 'cal-event-title-text': activeTitleText }"
           (mouseenter)="highlightDay.emit({ event: event })"
